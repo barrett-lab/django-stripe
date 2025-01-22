@@ -1,0 +1,36 @@
+{% extends "website/base.html" %}
+
+{% block content %} 
+{% load static %}
+
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center" style="background-color: #003399;">
+ 
+  <hr>
+  <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
+    <h1 class="display-4 fw-bold text-body-emphasis" style="color: white !important;">Camp Registration</h1>
+ 
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    
+    <p style="color:white;"> Before registering for camp please review the <a href="{% url 'website-program' %} " style="color:orange;">Program Details</a> </p>
+        <hr>
+    <div class="card mb-4 rounded-3 shadow-sm">
+      <div class="card-body" >
+        <br>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="checkbox" id="register-agree" name="register-agree" value="agree" required>
+          <label for="register-agree"> 
+            <p class="text-body-secondary">I have read the <a href="{% url 'website-program' %}">Program Details</a>, and agree to the terms discussed</p>
+          </label>  
+          <hr>
+          <button class="w-100 btn btn-lg btn-custom btn-warning" type="submit">Submit</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

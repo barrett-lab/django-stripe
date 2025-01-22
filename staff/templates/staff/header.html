@@ -1,0 +1,32 @@
+{% extends "staff/base.html" %}
+{% block content %} 
+{% load static %}
+
+
+  <header class="p-3 text-bg-dark">
+    <div class="container-fluid ">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <img class="bi me-2" src="{% static 'images/cu_nav.png' %}" alt="Camp United" alt="Camp United" width="40" height="32"/>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          
+          <li><a href="{% url 'staff-participant-list' %}" class="nav-link px-2 text-white">Participants</a></li>
+          <li><a href="{% url 'staff-program-list' %}" class="nav-link px-2 text-white">Programs</a></li>
+          <li><a href="{% url 'files' %}" class="nav-link px-2 text-white">Files</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Accounting</a></li>
+        </ul>
+
+       
+
+        <div class="text-end">
+          <a href="{% url 'profile' %}" class="d-block link-body-emphasis text-decoration-none "  aria-expanded="false">
+            <img src="{{ user.profile.image.url }}" alt="mdo" width="64" height="64" class="rounded-circle">
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+{% endblock %}

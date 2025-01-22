@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "users/files.html" %}
+{% block main %}
+
+<div class="col py-3 main-content">
+    <!-- Content goes here -->
+    <div class="container">
+    <div class="container mt-5">
+        <h3>Your Files</h3>
+        <hr>
+        <ul class="list-group">
+            {% for file in user_files %}
+                <li class="list-group-item"><a href="{{ file.file.url }}">{{ file.file.name }}</a></li>
+            {% endfor %}
+        </ul>
+        <br>
+        <h4>Upload File</h4>
+        <div class="container">
+        <form method="post" enctype="multipart/form-data" action="{% url 'user_files' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="file">Choose File:</label>
+                <input type="file" name="file" id="file" class="form-control-file">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+    {% endblock main %}

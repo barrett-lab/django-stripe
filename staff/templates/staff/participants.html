@@ -1,0 +1,81 @@
+{% extends "staff/base.html" %}
+{% block content %}
+{% load static %}
+{% include 'staff/header.html' %}
+<style>
+    .sidebar {
+        background-color: #003399;
+        color: white;
+        padding: 15px;
+        min-height: 100vh;
+    }
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 10px 0;
+    }
+    .sidebar a:hover {
+        text-decoration: underline;
+    }
+    .main-content {
+        padding: 20px;
+    }
+    /* Custom CSS */
+    .custom-staff-btn {
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .custom-staff-btn:hover {
+      background-color: white !important;
+      color: #003399 !important;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <!-- Sidebar -->
+        <div class="col-auto col-md-3 col-lg-2 px-sm-2 px-0 sidebar d-none d-md-block">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="{% url 'staff-home' %}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline"> Staff Home</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                   
+                    <li>
+                        <a href="{% url 'staff-participant-list' %}" class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline">Participant List</span>
+                        </a>
+                    </li>
+                   
+                <li class="nav-item">
+                  <a href="{% url 'website-home' %}" class="nav-link px-0 align-middle">
+                      <span class="ms-1 d-none d-sm-inline">Camp Website</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link px-0 align-middle">
+                      <span class="ms-1 d-none d-sm-inline">Contact</span>
+                  </a>
+                </li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                    <button class="btn btn-warning btn-lg custom-staff-btn" type="submit">Logout</button>
+                    </form>
+              </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col py-3 main-content">
+            <!-- Content goes here -->
+            <div class="container">
+                {% block main %}
+                {% endblock main %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

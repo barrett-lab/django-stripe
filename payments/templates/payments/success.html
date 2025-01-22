@@ -1,0 +1,62 @@
+{% extends "website/base.html" %}
+
+{% block content %} 
+{% load static %}
+        
+<div class="px-4 py-5 my-5 text-center">
+  
+    <div class="container-fluid cover-container">
+      <div class="row w-100">
+        <h1 class="display-5 fw-bold text-body-emphasis" style="color: #003399 !important;">Payment Successful</h1>
+
+        <p>Thank you for your purchase!<br>
+         
+          <br>
+          <p>{{ participant.first_name | title }} you are all set for {{ reservations | length }} of weeks of camp<br>
+            and a confirmation email is on the way.</p><br>
+        
+        
+         <p>Please save your Confirmation Codes:</p>
+   
+          
+          {% for reservation in reservations %}
+          <p>{{ reservation.reservation_code}}</p>
+      
+          {% endfor %}
+          
+        <p>Do you have any questions?</p><br>
+        <p>Feel free to contact us below.</p><br>
+        <p> <strong> CU in July!</strong><br></p>
+        
+
+        <hr>
+        <br>
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          <div class="col-md-7">
+            <h1 class="display-5 fw-bold text-body-emphasis" >Contact Us</h1>
+            {% if company %}
+            <p><a href="mailto:{{ company.email }}">{{ company.email }}</a></p>
+            <p>@{{ company.instagram }}</p>
+            <p>{{ company.website }}</p>
+            <p>{{ company.address | linebreaks }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          <div class="col-md-7">
+          <img src="{% static 'images/contact.jpg' %}" class="img-fluid mb-3 rounded-3" alt="Camp Activities" height="500px" width="500px">
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+
+      
+      
+  </div>
+
+  
+</div>
+{% endblock content %}

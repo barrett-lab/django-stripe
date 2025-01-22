@@ -1,0 +1,16 @@
+{% extends "users/files.html" %}
+{% block main %}
+<div class="col py-3 main-content">
+    <!-- Content goes here -->
+    <div class="container">
+        <div class="container mt-5">
+            <h3>Accessible Folders</h3>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="{% url 'user_files' %}">{{user.username}} Files</a></li>
+                <li class="list-group-item"><a href="{% url 'shared_files' %}">Shared Files</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock main %}

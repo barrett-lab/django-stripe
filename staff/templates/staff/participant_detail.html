@@ -1,0 +1,110 @@
+{% extends "staff/participants.html" %}
+
+{% block main %}
+{% load static %}
+<div class="container mt-5">
+    <h1>{{ participant.first_name }} {{ participant.last_name }}</h1>
+    <br>
+    <div class="row">
+        
+        <div class="col-md-6 mb-4">
+            <img src="{{ participant.picture.url }}" class="img-fluid" alt="Participant Picture">
+        </div>
+        <div class="col-md-6">
+            
+            <p><strong>Age:</strong> {{ participant.age }}</p>
+            <p><strong>Gender:</strong> {{ participant.gender }}</p>
+            <p><strong>Grade:</strong> {{ participant.grade }}</p>
+            <p><strong>Learning Style:</strong> {{ participant.learning_style }}</p>
+            <p><strong>Shirt Size:</strong> {{ participant.shirt_size }}</p>
+            <p><strong>Registration Date:</strong> {{ participant.registration_date }}</p>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h3>Parent/Guardian Information</h3>
+            <p><strong>Parent/Guardian Name:</strong> {{ participant.parent_guardian_name }}</p>
+            <p><strong>Parent/Guardian Phone:</strong> {{ participant.parent_guardian_phone }}</p>
+            <p><strong>Emergency Contact Name:</strong> {{ participant.emergency_contact_name }}</p>
+            <p><strong>Emergency Contact Phone:</strong> {{ participant.emergency_contact_phone }}</p>
+        </div>
+        <div class="col-md-6">
+            <h3>Medical Information</h3>
+            <p><strong>Health Card Number:</strong> {{ participant.health_card }}</p>
+            
+            <p><strong>Risk Level:</strong> 
+                {% if reservations %}
+                    Low
+                {% else %}
+                    High
+                {% endif %}
+            </p>
+            
+            <br>
+            <h3>Reservation Details</h3>
+            <p><strong>Attending:</strong> {{ reservations|length }} weeks of camp</p>
+
+            <p><strong>Payment Status:</strong> 
+                {% if reservations %}
+                    Paid
+                {% else %}
+                    Pending Payment
+                {% endif %}
+            </p>
+            <p><strong>Stripe Payment Id:</strong> </p>
+            
+        </div>
+
+        <div class="col-md-12">
+            <h3>Medical Waiver</h3>
+            
+                <p><strong>Bathroom Challenges:</strong> {{ medical_waiver.bathroom }}</p>
+                <p><strong>Feeding Challenges:</strong> {{ medical_waiver.feeding }}</p>
+    
+            
+                <p><strong>Comprehension Challenges:</strong> {{ medical_waiver.cognitive_comprehension }}</p>
+        
+            
+                <p><strong>Risk of Harm to Others:</strong> {{ medical_waiver.risk_harm_to_others }}</p>
+           
+                <p><strong>Motor Skills:</strong> {{ medical_waiver.motor_skills }}</p>
+          
+            
+                <p><strong>Allergies:</strong> {{ medical_waiver.allergies_option }}</p>
+                {% if medical_waiver.allergies_option == 'yes' %}
+                    <p><strong>Details:</strong> {{ medical_waiver.allergies_details }}</p>
+                {% endif %}
+            
+                <p><strong>Medical Condition(s):</strong> {{ medical_waiver.diagnosis_option }}</p>
+                {% if medical_waiver.diagnosis_option == 'yes' %}
+                    <p><strong>Details:</strong> {{ medical_waiver.diagnosis_details }}</p>
+                {% endif %}
+            
+                <p><strong>Medications:</strong> {{ medical_waiver.medications_option }}</p>
+                {% if medical_waiver.medications_option == 'yes' %}
+                    <p><strong>Details:</strong> {{ medical_waiver.medications_details }}</p>
+                {% endif %}
+                <p><strong>Communication Challenges:</strong> {{ medical_waiver.communication }}</p>
+                {% if medical_waiver.communication == 'yes' %}
+                    <p><strong>Details:</strong> {{ medical_waiver.communication_details }}</p>
+                {% endif %}
+                <p><strong>Behaviour Challenges:</strong> {{ medical_waiver.behaviour }}</p>
+                {% if medical_waiver.behaviour == 'yes' %}
+                    <p><strong>Details:</strong> {{ medical_waiver.behaviour_details }}</p>
+                {% endif %}
+    </div>
+  
+</div>
+    
+    
+
+
+
+            
+
+            
+{% endblock main %}
+
+
+
+

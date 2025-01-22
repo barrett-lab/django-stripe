@@ -1,0 +1,72 @@
+{% extends "website/base.html" %}
+
+{% block content %} 
+{% load static %}
+<style>
+    #register-agree {
+        border: 2px solid #000 !important; /* Black border */
+        margin-right: 5px !important; /* Optional: Adjust spacing between checkbox and label */
+      }
+    </style>
+
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-bold text-body-emphasis" style="color: #003399 !important;">Medical Waiver</h1>
+    <section class="container-fluid py-5 text-center" style="background-color: #003399; color: #ffffff;">
+    <p>Campers must be physically able to participate with minimal supports. <br>
+        All campers are required to complete activities of daily living on their own.<br>
+        All campers are required to complete a Medical Waiver during the registration process. <br>
+        For campers who take medication. If assistance is required, this information must be added to the medical <br>waiver during registration</p>
+    </section>
+       <br>
+        <h3>Please answer the questions below:</h3>
+        <hr>
+        <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+          
+              <input type="checkbox" id="register-agree" name="register-agree" value="agree" required>
+              <label for="register-agree"> 
+                <small class="text-body-secondary">I have read the <a href="{% url 'website-program' %}">Program Details</a>, and agree to the terms discussed</small>
+              </label>  
+              <hr>
+              <button class="w-100 btn btn-lg btn-custom btn-warning" type="submit">Submit</button>
+          </form>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function toggleFieldDetails(field, detailField) {
+            const fieldElement = document.getElementById(field);
+            const detailElement = document.getElementById(detailField);
+            
+            fieldElement.addEventListener('change', function() {
+                if (fieldElement.value === 'yes') {
+                    detailElement.parentElement.style.display = 'block';
+                } else {
+                    detailElement.parentElement.style.display = 'none';
+                }
+            });
+            
+            // Initial check
+            if (fieldElement.value === 'yes') {
+                detailElement.parentElement.style.display = 'block';
+            } else {
+                detailElement.parentElement.style.display = 'none';
+            }
+        }
+    
+        toggleFieldDetails('id_allergies_option', 'id_allergies_details');
+        toggleFieldDetails('id_diagnosis_option', 'id_diagnosis_details');
+        toggleFieldDetails('id_medications_option', 'id_medications_details');
+        toggleFieldDetails('id_communication', 'id_communication_details');
+        toggleFieldDetails('id_behaviour', 'id_behaviour_details');
+    });
+    </script>
+    
+{% endblock content %}

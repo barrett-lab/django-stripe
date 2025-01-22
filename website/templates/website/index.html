@@ -1,0 +1,188 @@
+{% extends "website/base.html" %}
+{% block content %}
+{% load static %}
+<style>
+  .custom-list-item {
+      height: 80px; /* Increased height */
+      
+      line-height: 70px; /* Center the text vertically */
+      border-radius: 10px; /* Add rounded corners for a nicer look */
+  }
+
+  .custom-list-item:nth-child(1) {
+      background-color: orange; /* First list item color */
+  }
+
+  .custom-list-item:nth-child(2) {
+      background-color: #ffd700; /* Second list item color */
+  }
+
+  .custom-list-item:nth-child(3) {
+      background-color: #ffdf00; /* Third list item color */
+  }
+
+  .custom-list-item:nth-child(4) {
+      background-color: #ffec8b; /* Fourth list item color */
+  }
+  .text-blue {
+    color: #003399 !important;
+  }
+  .text-orange {
+    color: orange !important;
+  }
+  /* Custom CSS */
+.custom-register-btn {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-register-btn:hover {
+  background-color: white !important;
+  color: #003399 !important;
+}
+
+
+</style>
+<div style="height: 80px; width:100%%; background-color: #ffc107;color:#003399;text-align:center;padding:20px;">
+    <h3><b>Registration Begins <u> June 10th</b></u></h3>
+  </div>
+  <main class="container"></main>
+<section class="hero d-flex justify-content-center align-items-center vh-100" style="background-color: #003399;">
+    
+      <div class="row align-items-center">
+        <!-- First Container -->
+        <div class="col-lg-6">
+          <div class="p-3 text-center">
+            <img src="{% static '/images/cu_logo_main_noback.png' %}" alt="" class="img-fluid" height="80%" width="80%">
+          </div>
+        </div>
+        <!-- Second Container -->
+        <div class="col-lg-6">
+          <div class="p-3 text-center text-lg-start">
+            <h1 class="display-3 fw-bold mb-4 text-white">Empowering Youth Independence</h1>
+            <p class="lead text-white">At<strong> Camp United</strong>, we're dedicated to empowering youth to become independent, confident individuals who can shape a brighter tomorrow.<strong class="text-orange"> Join Camp United Today</strong > and start building a better future!</p>
+            <a href="{% url 'website-register' %}" class="btn btn-warning btn-lg custom-register-btn">Register Now</a>
+          </div>
+        </div>
+        
+        </div>
+      </div>
+    
+  </section>
+  
+
+<section class="featurette bg-light py-5">
+  <div class="container text-center">
+      <div class="row align-items-center">
+          <div class="col-md-6">
+              <img src="{% static 'images/group.jpg' %}" class="img-fluid mb-3 rounded-3" alt="Camp Activities" height="500px" width="500px">
+          </div>
+          <div class="col-md-6">
+            <h2 class="display-6 fw-bold mb-4">Transforming Lives <span class="text-primary">Through Skill Development</span></h2>
+            <p>
+              <strong> Camp United</strong> offers youth ages 12-21 experiencing social, developmental, or emotional challenges a supportive and enriching 3 week summer program designed to enhance their life, develop positive relationships and develop practical skills.</p>
+            <a href="{% url 'website-program' %}" class="btn btn-primary custom-program-btn">Learn More About Our Program</a>
+          </div>
+          
+      </div>
+      
+         
+      </div>
+  </div>
+</section>
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none" >
+    <symbol  id="bus" viewBox="0 0 16 16" >
+    <path d="M5 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0m8 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-6-1a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2zm1-6c-1.876 0-3.426.109-4.552.226A.5.5 0 0 0 3 4.723v3.554a.5.5 0 0 0 .448.497C4.574 8.891 6.124 9 8 9s3.426-.109 4.552-.226A.5.5 0 0 0 13 8.277V4.723a.5.5 0 0 0-.448-.497A44 44 0 0 0 8 4m0-1c-1.837 0-3.353.107-4.448.22a.5.5 0 1 1-.104-.994A44 44 0 0 1 8 2c1.876 0 3.426.109 4.552.226a.5.5 0 1 1-.104.994A43 43 0 0 0 8 3"/>
+   
+    <path d="M15 8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1V2.64c0-1.188-.845-2.232-2.064-2.372A44 44 0 0 0 8 0C5.9 0 4.208.136 3.064.268 1.845.408 1 1.452 1 2.64V4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v3.5c0 .818.393 1.544 1 2v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V14h6v1.5a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2c.607-.456 1-1.182 1-2zM8 1c2.056 0 3.71.134 4.822.261.676.078 1.178.66 1.178 1.379v8.86a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 11.5V2.64c0-.72.502-1.301 1.178-1.379A43 43 0 0 1 8 1"/>
+    </symbol>
+
+    <symbol id="people" viewBox="0 0 16 16">
+        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+      </symbol>
+
+      <symbol id="lightbulb" viewBox="0 0 16 16">
+        <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5"/>
+      </symbol>
+      <symbol id="barchart" viewBox="0 0 16 16">
+        <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/>
+      </symbol>
+  </svg>
+<div class="container px-4 py-5" id="icon-grid">
+  <h1 class="display-5 fw-bold text-body-emphasis">Camp Features</h1>
+    <hr>
+    
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-body-secondary flex-shrink-0 me-3 text-orange" width="2.5em" height="2.5em"><use xlink:href="#lightbulb"/></svg>
+        <div>
+            <h3 class="display-7 fw-bold text-blue ">Personal Development </h3>
+          <p> Empowering participants to enhance their self-awareness, set meaningful goals, cultivate resilience, and build self-confidence.</p>
+        </div>
+      </div>
+      
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-body-secondary flex-shrink-0 me-3 text-orange" width="2.75em" height="2.75em"><use xlink:href="#people"/></svg>
+        <div>
+            <h3 class="display-7 fw-bold text-blue ">Safe and Inclusive Environment</h3>
+          <p>CU is dedicated to fostering diversity, equity, and inclusion among participants, staff, and volunteers.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-body-secondary flex-shrink-0 me-3 text-orange" width="2.75em" height="2.75em"><use xlink:href="#barchart"/></svg>
+        <div>
+          <h3 class="display-7 fw-bold text-blue ">Proficiency-Based Activities</h3>
+          <p>We prioritze each youths personalized learning experiences, skill mastery, and increased motivation. </p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-body-secondary flex-shrink-0 me-3 text-orange" width="2.75em" height="2.75em"><use xlink:href="#bus"/></svg>
+        <div>
+          
+          <h3 class="display-7 fw-bold text-blue ">Community Engagement</h3>
+          <p>Participants are actively involved in their communities fostering a sense of belonging and social responsibility </p>
+        </div>
+      </div>
+   
+    </div>
+  </div>
+  <hr>
+<section class="featurette  py-5"  >
+    
+    
+    <div class="container text-center">
+        <div class="row align-items-center">
+         
+            <div class="col-md-6">
+                <h1 class="display-3 fw-bold mb-4 ">Our Founder</h1>
+                <h1 class="display-5 fw-bold text-body-emphasis" style="color: #003399 !important;">Sonia Barrett, BA CYW</h1>
+              
+                <p>
+                  With over 20 years of experience as a child and youth counselor, Sonia envisioned a nurturing environment where young individuals facing challenges could not only learn and grow but also experience joy and camaraderie. The journey of<strong> Camp United</strong> is rooted in Sonia's visionary leadership, driven by her unwavering passion for empowering youth and expanding access to support services for children and adolescents navigating social, developmental, or emotional hurdles. Through her dedication, she hopes this innovative youth initiative will become a beacon of hope and opportunity for countless young lives.  </p>
+                
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/sb_sites.jpg' %}" class="img-fluid mb-3 rounded-3" alt="Camp Activities" height="400px" width="400px">
+            </div>
+        </div>
+    </section>
+    <section class="featurette bg-light py-5" style="background-color: #003399 !important;" >
+        <div class="container text-center">
+            
+            <div class="row align-items-center">
+                <BR>
+                <div class="col-md-6">
+                    
+                    <img src="{% static 'images/cu_flyer.png' %}" class="img-fluid mb-3 rounded-3" alt="Camp Activities" height="400px" width="400px">
+                </div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bold text-body-emphasis" style="color: white !important;">Information Session</h1>
+                    <h3 class="featurette-heading text-white">Join Us <span class="text-primary" style="color: orange !important;">June 10th,2024</span></h2>
+                    <br>
+                    <p style="color: white;"><strong> Camp United</strong> invites you to our information session to learn more about our focus on building youth life skills, supporting healthy relationships, and promoting independence via community engagement.  </p>
+                    
+                </div>
+              
+            </div>
+        </section>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "website/base.html" %}
+{% block content %} 
+{% load static %}
+<style>
+  .form-check-input {
+      border: 2px solid #000; /* Black border */
+      margin-right: 5px; /* Optional: Adjust spacing between checkbox and label */
+  }
+</style>
+
+<div class="container 100vw">
+  
+  <div class="text-center mt-3">
+      <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-4" style="color: #003399 !important;">Select Camp Dates</h1>
+      <p class="fs-5">Choose the dates for your camp program:</p>
+    
+      {% if error_message %}
+        <p class="text-danger">{{ error_message }}</p>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        {% for space in available_spaces %}
+        <div class=" mb-3">
+          <input class="form-check-input" type="checkbox" name="program_space_ids" id="space_{{ space.id }}" value="{{ space.id }}" >
+          <label class="form-check-label" for="space_{{ space.id }}">{{ space.program.start_date }} to {{ space.program.end_date }}</label>
+        </div>
+        {% endfor %}
+        
+          <button class="btn btn-lg custom-program-btn btn-primary" type="submit">Submit</button>
+        
+      </form>
+      <hr class="my-4">
+      <small class="text-muted">By clicking Submit, you agree to Camp United's <a href="#">Program Details.</a></small>
+    </div>
+  
+</div>
+{% endblock content %}

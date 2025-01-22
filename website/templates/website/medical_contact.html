@@ -1,0 +1,45 @@
+{% extends "website/base.html" %}
+{% block content %} 
+{% load static %}
+
+
+
+    
+
+        
+<div class="px-4 py-5 my-5 text-center">
+  
+    <div class="container-fluid cover-container">
+      <div class="row w-100">
+        <h1 class="display-5 fw-bold text-body-emphasis" style="color: #003399 !important;">Please Contact</h1>
+
+        <p>Thank you for your interest in Camp United!<br>
+            <br>
+         We would like to discuss the details of your registration.<br>
+         Please save your registration confirmation # {{medical_participant_id}}<br>
+         and contact us to complete your registration.<br>
+        </p>
+        <hr>
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            
+          <div class="col-md-7">
+            <h1 class="display-5 fw-bold text-body-emphasis" >Contact Us</h1>
+            {% for data in company %}
+      
+            <p class="lead">Have questions?</p>
+             
+              <p><a href="mailto:campunited24@gmail.com">{{data.email}}</a></p>
+              <p>@{{data.instagram}}</p>
+              <p>{{data.website}}</p>
+              <p>{{data.address |linebreaks}}</p>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+{% endblock content %}

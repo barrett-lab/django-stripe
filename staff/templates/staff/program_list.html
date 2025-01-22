@@ -1,0 +1,32 @@
+{% extends "staff/programs.html" %}
+{% load static %}
+{% block main %}
+<style>
+    /* Your CSS styles */
+    a {
+        text-decoration: none;
+    }
+</style>
+<a class="btn btn-outline-secondary" href="{% url 'staff-program-create' %}">Create Program</a>
+<br>    
+<!--Profile Template-->
+{% for program in programs %}  
+    <a href="{% url 'staff-program-detail' program.id %}"><div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{ program.name }}</h4>
+                <!--src no longer hardocded rather, using django to fetch-->
+                    <!--For loop-->
+                    <p class="card-text">Target Age:{{ program.age }}</p>
+                    <p class="card-text">Theme:{{ program.theme }}</p>
+                    <p class="card-text">Description:{{ program.description }}</p>
+                    
+                    
+            </div>
+    </div></a>
+    <br>
+{% endfor %}
+{% endblock main %}
+
+
+
+

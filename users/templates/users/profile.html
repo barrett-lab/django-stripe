@@ -1,0 +1,136 @@
+{% extends "staff/base.html" %}
+{% block content %}
+{% load static %}
+{% include 'staff/header.html' %}
+{% load crispy_forms_tags %}
+
+<style>
+    .sidebar {
+        background-color: #003399;
+        color: white;
+        padding: 15px;
+        min-height: 100vh;
+    }
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 10px 0;
+    }
+    .sidebar a:hover {
+        text-decoration: underline;
+    }
+    .main-content {
+        padding: 20px;
+    }
+    /* Custom CSS */
+    .custom-staff-btn {
+    transition: background-color 0.3s, color 0.3s;
+    }
+
+    .custom-staff-btn:hover {
+    background-color: white !important;
+    color: #003399 !important;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <!-- Sidebar -->
+        <div class="col-auto col-md-3 col-lg-2 px-sm-2 px-0 sidebar d-none d-md-block">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="{% url 'staff-home' %}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline"> Staff Home</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                   
+                    <li>
+                        <a href="{% url 'staff-participant-list' %}" class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline">Participants</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'staff-program-list' %}" class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline">Programs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline">Files</span>
+                        </a>
+                    </li>
+                   
+                    <li>
+                      <a href="#" class="nav-link px-0 align-middle">
+                          <span class="ms-1 d-none d-sm-inline">Events</span>
+                      </a>
+                  </li>
+                
+                <li>
+                  <a href="#" class="nav-link px-0 align-middle">
+                      <span class="ms-1 d-none d-sm-inline">Payroll</span>
+                  </a>
+              </li>
+                <li class="nav-item">
+                  <a href="{% url 'website-home' %}" class="nav-link px-0 align-middle">
+                      <span class="ms-1 d-none d-sm-inline">Camp Website</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link px-0 align-middle">
+                      <span class="ms-1 d-none d-sm-inline">Contact</span>
+                  </a>
+                </li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-warning btn-lg custom-staff-btn" type="submit">Logout</button>
+                        </form>
+                  </li>
+              </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col py-3 main-content">
+            <!-- Content goes here -->
+            <div class="container">
+                <div class="content-section" style="background-color: #f8f9fa; color: black;">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h4 class="card-title">{{ user.username }}</h4>
+                                    <img src="{{ user.profile.image.url }}" class="rounded-circle" alt="Profile Image" width="100" height="100"> 
+                                    <p class="card-text">{{ user.id }}</p>
+                                    <p class="card-text">{{ user.email }}</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <fieldset class="form-group">
+                                            <h4 class="card-title">Update Profile</h4>
+                                            {{ u_form|crispy }}
+                                            {{ p_form|crispy }}
+                                        </fieldset>
+                                        <div class="form-group">
+                                            <button class="btn btn-outline-info" type="submit">Save</button>
+                                        </div>
+                                    </form>
+                                    <form method="post" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-warning btn-lg custom-staff-btn" type="submit">Logout</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

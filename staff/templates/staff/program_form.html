@@ -1,0 +1,19 @@
+{% extends "staff/programs.html" %}
+{% load crispy_forms_tags %}
+{% block main %} 
+    <div class="main-section">
+        <form method="POST">
+            {% csrf_token %}
+            <!--need to be added to each form-->
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Add Program</legend>
+                {{ form|crispy }}
+                <!--can use {{ form }}, {{ form.as_p }}-->
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Add</button>
+            </div>
+        </form>
+        
+    </div>
+{% endblock main %}

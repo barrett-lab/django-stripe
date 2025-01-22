@@ -1,0 +1,56 @@
+{% extends "website/base.html" %}
+
+{% block content %} 
+{% load static %}
+<section class="container-fluid py-5 text-center" style="background-color: #003399; color: #ffffff;">
+    <h1 class="display-3 fw-bold mb-4" >Camp United</h1>
+    <hr>
+    <h1 class="display-5 fw-bold text-body-emphasis" style="color: orange !important;">Program Details</h1>
+  </section>
+<section class="container py-5 text-center" >
+  
+  
+  
+  <div class="row row-cols-1 row-cols-md-2 justify-content-center">
+   <div class="container">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <br>
+          <div class="card-body">
+              {% for data in program %}
+              <div class="col">
+                  <h3 class="text-primary">Age Range:</h3>
+                  <p class="fs-5">{{data.age |linebreaks }}</p>
+
+                  <h3 class="text-primary">Camp Dates:</h3>
+                  <p class="fs-5">{{data.days_of_operation |linebreaks }}</p>
+
+                  <h3 class="text-primary">Program Goals:</h3>
+                  <p class="fs-5">{{data.goals |linebreaks }}</p>
+              </div>
+          </div>
+      </div>
+    </div>
+      <div class="container">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <br>
+          <div class="card-body">
+              <h1 class="card-title pricing-card-title">${{data.cost}}<small class="text-muted fw-light">/week</small></h1>
+              <br>
+              <h3 class="text-primary">Includes:</h3>
+              <p class="fs-5">{{data.includes |linebreaks }}</p>
+              <br>
+              <a href="{% url 'website-register' %}" class="btn btn-warning btn-lg btn-custom">Register Now</a>
+              <br>
+          </div>
+      </div>
+  </div>
+</div>
+</section>
+<section class="container-fluid py-5 text-center" style="background-color: #003399; color: #ffffff;">
+  <h3 class="display-4 fw-bold mb-4">Camper Requirements:</h3>
+  <p class="fs-5">{{ data.requirements | linebreaks }}</p>
+</section>
+
+{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,123 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+<form id="payment-form" method="POST">
+  {% csrf_token %}
+  <div id="card-element">
+    <!-- A Stripe Element will be inserted here. -->
+  </div>
+  <!-- Used to display form errors. -->
+  <div id="card-errors" role="alert"></div>
+  <button id="submit-payment">Submit Payment</button>
+  <input type="hidden" id="selected_space_id" name="selected_space_id" value="{{ selected_space_id }}">
+</form>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
+
+  // Create an instance of Elements
+  var elements = stripe.elements();
+
+  // Create an instance of the card Element
+  var card = elements.create('card');
+
+  // Add an instance of the card Element into the `card-element` div
+  card.mount('#card-element');
+
+  // Handle real-time validation errors from the card Element
+  card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = '';
+    }
+  });
+
+  // Handle form submission
+  var form = document.getElementById('payment-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Disable the submit button to prevent multiple submissions
+    document.getElementById('submit-payment').disabled = true;
+
+    // Create payment method using card Element
+    stripe.createPaymentMethod({
+      type: 'card',
+      card: card,
+    }).then(function(result) {
+      if (result.error) {
+        // Show error to customer
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+
+        // Enable the submit button
+        document.getElementById('submit-payment').disabled = false;
+      } else {
+        // Send payment method and program space ID to your server to process payment
+        var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        var paymentMethodId = result.paymentMethod.id;
+        var programSpaceId = document.getElementById('program_space_id').value;
+        fetch('/process_payment/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+          },
+          body: JSON.stringify({
+            payment_method_id: paymentMethodId,
+            program_space_id: programSpaceId,
+          }),
+        }).then(function(response) {
+          return response.json();
+        }).then(function(result) {
+          // Handle server response
+          if (result.error) {
+            var errorElement = document.getElementById('card-errors');
+            errorElement.textContent = result.error;
+            document.getElementById('submit-payment').disabled = false;
+          } else if (result.requires_action) {
+            // Handle additional actions required by Stripe (e.g., 3D Secure)
+            stripe.handleCardAction(result.payment_intent_client_secret).then(function(result) {
+              if (result.error) {
+                // Show error to customer
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+                document.getElementById('submit-payment').disabled = false;
+              } else {
+                // The payment succeeded or requires further confirmation
+                fetch('/process_payment/', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                  },
+                  body: JSON.stringify({
+                    payment_intent_id: result.paymentIntent.id,
+                  }),
+                }).then(function(confirmResult) {
+                  return confirmResult.json();
+                }).then(function(finalResult) {
+                  if (finalResult.error) {
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = finalResult.error;
+                    document.getElementById('submit-payment').disabled = false;
+                  } else {
+                    window.location.href = '/payment-success/';
+                  }
+                });
+              }
+            });
+          } else {
+            // Payment succeeded
+            window.location.href = '/payment-success/';
+          }
+        });
+      }
+    });
+  });
+</script>
+{% endblock %}
