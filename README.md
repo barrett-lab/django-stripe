@@ -34,4 +34,10 @@
 * shared (public)
 ### Website
 
+## Deployment
+### WSGI - Gunicorn
+### Web Server - NGINX
+### HTTPS - Let's encrypt
+
+
 
